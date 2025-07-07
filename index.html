@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App - Mayara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Design System Variables from Figma */
+        :root {
+            /* Colors */
+            --color-text-primary: #1c1c2b;
+            --color-text-secondary: #5a5a7c;
+            --color-text-inverse: #ffffff;
+            --color-background-primary: #ffffff;
+            --color-background-secondary: #ededf7;
+            --color-background-inverse: #1c1c2b;
+            --color-interactive-fill-loud: #4850e5;
+            --color-icon-primary: #2f2f46;
+            --color-icon-inverse: #ffffff;
+            --color-border-primary: #bdbfd6;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-size-base: 20px;
+            --font-size-nav: 18px;
+            --font-weight-regular: 400;
+            --font-weight-semibold: 600;
+            --line-height-base: 20px;
+            
+            /* Spacing */
+            --spacing-none: 0;
+            --spacing-3xs: 16px;
+            --spacing-2xs: 20px;
+            --spacing-xs: 24px;
+            --spacing-gap-xs: 8px;
+            
+            /* Border Radius */
+            --border-radius-m: 16px;
+            --border-radius-full: 9999px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background-secondary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--color-text-primary);
+        }
+
+        .container {
+            flex: 1;
+            max-width: 360px;
+            margin: 0 auto;
+            background-color: var(--color-background-inverse);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .content {
+            background-color: var(--color-background-secondary);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 544px;
+        }
+
+        .header {
+            padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-2xs);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-gap-xs);
+        }
+
+        .greeting {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-regular);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-base);
+            letter-spacing: -0.2px;
+        }
+
+        .question {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+            line-height: var(--line-height-base);
+            letter-spacing: -0.2px;
+        }
+
+        .menu {
+            padding: 0 var(--spacing-xs) var(--spacing-2xs);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-gap-xs);
+        }
+
+        .card {
+            background-color: var(--color-background-primary);
+            border-radius: var(--border-radius-m);
+            padding: var(--spacing-3xs);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 128px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1332px;
+        }
+
+        .card-icon img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%) invert(17%) sepia(8%) saturate(2071%) hue-rotate(210deg) brightness(98%) contrast(92%);
+        }
+
+        .card-title {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+            line-height: var(--line-height-base);
+            letter-spacing: -0.2px;
+        }
+
+        .badge {
+            background-color: var(--color-interactive-fill-loud);
+            color: var(--color-text-inverse);
+            width: 32px;
+            height: 32px;
+            border-radius: var(--border-radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: -0.2px;
+            line-height: var(--line-height-base);
+        }
+
+        .cards-row {
+            display: flex;
+            gap: var(--spacing-gap-xs);
+        }
+
+        .card-small {
+            flex: 1;
+            width: 152px;
+        }
+
+        .bottom-nav {
+            background-color: var(--color-background-inverse);
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: var(--spacing-3xs) 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-gap-xs);
+            text-decoration: none;
+            color: var(--color-text-inverse);
+            font-size: var(--font-size-nav);
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: -0.18px;
+            line-height: var(--line-height-base);
+        }
+
+        .nav-item.active .nav-icon {
+            background-color: var(--color-background-primary);
+            color: var(--color-text-primary);
+        }
+
+        .nav-icon {
+            width: 48px;
+            height: 48px;
+            background-color: transparent;
+            border-radius: var(--border-radius-m);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-3xs);
+        }
+
+        .nav-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-icon.active img {
+            filter: brightness(0) saturate(100%) invert(17%) sepia(8%) saturate(2071%) hue-rotate(210deg) brightness(98%) contrast(92%);
+        }
+
+        .nav-icon:not(.active) img {
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        }
+
+        @media (max-width: 375px) {
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="header">
+                <div class="greeting">Olá, Mayara!</div>
+                <div class="question">O que você vai fazer?</div>
+            </div>
+
+            <div class="menu">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <img src="rack-icon.svg" alt="Armazenar" />
+                        </div>
+                        <div class="badge">1</div>
+                    </div>
+                    <div class="card-title">Armazenar</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <img src="tote-icon.svg" alt="Coletar" />
+                        </div>
+                    </div>
+                    <div class="card-title">Coletar</div>
+                </div>
+
+                <div class="cards-row">
+                    <div class="card card-small">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <img src="search-icon.svg" alt="Consultar" />
+                            </div>
+                        </div>
+                        <div class="card-title">Consultar</div>
+                    </div>
+
+                    <div class="card card-small">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <img src="chat-icon.svg" alt="Reportar" />
+                            </div>
+                        </div>
+                        <div class="card-title">Reportar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <div class="nav-icon active">
+                    <img src="home-icon.svg" alt="Casa" />
+                </div>
+                <span>Casa</span>
+            </a>
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <img src="bar-chart-icon.svg" alt="Desempenho" />
+                </div>
+                <span>Desempenho</span>
+            </a>
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <img src="user-icon.svg" alt="Perfil" />
+                </div>
+                <span>Perfil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Adiciona interatividade aos cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.card-title').textContent;
+                alert(`Você clicou em: ${title}`);
+            });
+        });
+
+        // Adiciona interatividade à navegação
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                    nav.querySelector('.nav-icon').classList.remove('active');
+                });
+                this.classList.add('active');
+                this.querySelector('.nav-icon').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> 
